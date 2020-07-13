@@ -1,3 +1,23 @@
+choice_loop_start = "Please make a selection\n"
+choice_loop_end = "Go back to main"
+
+def choice_loop(options, start=choice_loop_start,
+                end=choice_loop_end):
+    terminate = False
+    while not terminate:
+
+        print(start)
+
+        options[end] = lambda: None
+
+        user_choice = list_selection(list(options.keys()))
+
+        if user_choice == end:
+            terminate = True
+
+        options[user_choice]()
+
+
 def list_selection(items):
     chosen_index = None
 
@@ -25,3 +45,4 @@ def convert_input_to_int(user_input, min, max):
     else:
         print(err_message)
         return None
+
