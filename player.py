@@ -1,4 +1,5 @@
 import enum
+from model_utils import check_type
 
 player_init_error = "Wrong data type submitted in player init"
 violin_init_error = "Attempted to assign violin role to non violinist"
@@ -27,19 +28,6 @@ class Player:
         return f"Name: {self.name}, Instrument: {self.instrument.name}, " \
                f"Role: {self.prim_role.name}, Employment: {self.emp.name} " \
                f"Other Roles: {self.sec_role}, Availability: {self.availability.name}"
-
-
-def check_type(obj, obj_type):
-    if isinstance(obj, obj_type):
-        return obj
-
-    elif isinstance(obj, list):
-        new_list = []
-        for item in obj:
-            if isinstance(item, obj_type):
-                new_list.append(item)
-    else:
-        raise ValueError(player_init_error)
 
 
 class Role(enum.Enum):

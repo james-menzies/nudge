@@ -3,6 +3,8 @@ from player import *
 
 player_list = []
 
+def save():
+    pass
 
 with open('resources/players.csv', 'r') as file:
     reader = csv.reader(file)
