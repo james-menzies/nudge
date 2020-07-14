@@ -10,6 +10,7 @@ def check_type(obj, obj_type, throw=True):
         for item in obj:
             if isinstance(item, obj_type):
                 new_list.append(item)
+        return new_list
     elif throw:
         raise ValueError(player_init_error)
     else:

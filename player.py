@@ -38,6 +38,15 @@ class Role(enum.Enum):
     tutti = 4
 
 
+def get_roster_symbol(role):
+    if role == Role.concert_master:
+        return "(C.M.)"
+    elif role == Role.ass_concert_master:
+        return "(A.C.M.)"
+    else:
+        return ""
+
+
 class Instrument(enum.Enum):
     violin = 0
     viola = 1
