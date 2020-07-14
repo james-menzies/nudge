@@ -5,7 +5,7 @@ default_refresh = lambda pos, player: None
 
 
 class Section:
-    def __init__(self, name, instrument, size, refresh=default_refresh):
+    def __init__(self, name, instrument, size):
         self.name = name
         self.__instrument = check_type(instrument, Instrument)
         check_type(size, int)
@@ -15,7 +15,6 @@ class Section:
             self.__players.append(None)
 
         self.__roles = {}
-        self.__refresh = refresh
 
     @property
     def players(self):
@@ -41,6 +40,13 @@ class Section:
         else:
             return Role.tutti
 
+    def remove_player(self, pos):
+        old_player = self.__players[pos]
+        self.__players[pos] = None
+
+        old_player.availability = Availability.reserve
+        return old_player
+
     def seat_player(self, pos, player):
 
         check_type(player, Player)
@@ -48,7 +54,11 @@ class Section:
         if player.instrument == self.__instrument:
             old_player = self.__players[pos]
             self.__players[pos] = player
-            self.__refresh(pos, player)
+
+            if old_player:
+                old_player.availability = Availability.reserve
+            player.availability = Availability.engaged
+
             return old_player
         else:
             raise ValueError("Attempted to place wrong instrumentalist in section.")
@@ -72,53 +82,39 @@ class Section:
             return Suitability.NonRecommended
 
     def __repr__(self):
-        repr = f"{self.name}\n\n"
-        for index, player in enumerate(self.__players):
+        repr = f"{self.name}\n"
+        for pos, player in enumerate(self.__players):
+            if pos % 2 == 0:
+                repr += "\n"
+            repr += self.__player_repr(pos, player) + "\n"
 
-            role = self.__get_role(index)
-            casual = player and player.emp == Employment.casual
-            promoted = player and player.prim_role.value > role.value
-
-            prefix = None
-            if role == Role.tutti:
-                prefix = ""
-            elif not player:
-                prefix = "*"
-            elif casual:
-                prefix = "#"
-            elif promoted:
-                prefix = "#"
-            else:
-                prefix = "*"
-
-            name = None
-            if player:
-                name = player.name
-            else:
-                name = "Chair Vacant"
-
-            suffix = get_roster_symbol(role)
-            repr += f"{prefix} {name} {suffix}\n"
         return repr
 
-            # if player:
-            #     role = self.__get_role(index)
-            #
-            #     promoted = player.prim_role.value > self.__get_role(index).value
-            #
-            #     if casual or promoted:
-            #         repr += "# "
-            #     elif role != Role.tutti:
-            #         repr += "* "
-            #     repr += player.name
-            #
-            #
-            # else:
-            #     repr += "Chair Vacant"
-            #
-            # appendix = get_roster_symbol(self.__get_role(index))
-            # repr += f"  {appendix}\n"
-        return repr
+    def __player_repr(self, pos, player):
+        role = self.__get_role(pos)
+        casual = player and player.emp == Employment.casual
+        promoted = player and player.prim_role.value > role.value
+
+        if role == Role.tutti and casual:
+            prefix = "~"
+        elif role == Role.tutti:
+            prefix = ""
+        elif not player:
+            prefix = "*"
+        elif casual:
+            prefix = "#"
+        elif promoted:
+            prefix = "#"
+        else:
+            prefix = "*"
+
+        if player:
+            name = player.name
+        else:
+            name = "Chair Vacant"
+
+        suffix = get_roster_symbol(role)
+        return f"{prefix} {name} {suffix}"
 
 
 class Suitability(enum.Enum):
