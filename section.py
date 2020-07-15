@@ -26,7 +26,10 @@ class Section:
         self.__roles[pos] = role
 
     def check_chair(self, pos, player):
-        role = self.__get_role(pos)
+        if not player:
+            return Suitability.OK
+
+        role = self.get_role(pos)
         if player.instrument != self.__instrument:
             return Suitability.Illegal
         elif player.emp == Employment.permanent:
@@ -34,7 +37,7 @@ class Section:
         else:
             return self.__check_casual(role, player)
 
-    def __get_role(self, pos):
+    def get_role(self, pos):
         if pos in self.__roles:
             return self.__roles[pos]
         else:
@@ -44,7 +47,8 @@ class Section:
         old_player = self.__players[pos]
         self.__players[pos] = None
 
-        old_player.availability = Availability.reserve
+        if old_player:
+            old_player.availability = Availability.reserve
         return old_player
 
     def seat_player(self, pos, player):
@@ -91,14 +95,14 @@ class Section:
         return repr
 
     def __player_repr(self, pos, player):
-        role = self.__get_role(pos)
+        role = self.get_role(pos)
         casual = player and player.emp == Employment.casual
         promoted = player and player.prim_role.value > role.value
 
         if role == Role.tutti and casual:
             prefix = "~"
         elif role == Role.tutti:
-            prefix = ""
+            prefix = " "
         elif not player:
             prefix = "*"
         elif casual:

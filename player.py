@@ -29,6 +29,12 @@ class Player:
                f"Role: {self.prim_role.name}, Employment: {self.emp.name} " \
                f"Other Roles: {self.sec_role}, Availability: {self.availability.name}"
 
+    def performs_role(self, role):
+        prim = role == self.prim_role
+        sec = role in self.sec_role
+
+        return prim or sec
+
 
 class Role(enum.Enum):
     concert_master = 0
