@@ -1,5 +1,6 @@
 from section import Section, Suitability
 from player import *
+from display_utils import render_columns
 
 
 class Roster:
@@ -31,35 +32,10 @@ class Roster:
         return tuple(self.__sections)
 
     def __repr__(self):
-        repr = self.title + "\n\n"
-        repr += self.__repr_section_cluster(self.__sections[0:3])
-        repr += self.__repr_section_cluster(self.__sections[3:])
-        return repr
-
-    def __repr_section_cluster(self, sections):
-
-        max_rows = 0
-
-        cluster = ""
-
-        for index, section in enumerate(sections):
-            section = str(section)
-            section = section.split(sep="\n")
-            sections[index] = section
-            if len(section) > max_rows:
-                max_rows = len(section)
-
-        for i in range(0, max_rows):
-            for section in sections:
-                if i >= len(section):
-                    name_str = ""
-                else:
-                    name_str = section[i]
-
-                cluster += "{0:30}".format(name_str)
-            cluster += "\n"
-
-        return cluster
+        result = self.title + "\n\n"
+        result += render_columns(self.__sections[0:3])
+        result += render_columns(self.__sections[3:])
+        return result
 
     def replace_player(self, sect_ind, chair_ind, player):
 
@@ -79,7 +55,6 @@ class Roster:
 
     def check_chair(self, sect_ind, chair_ind, player):
         return self.__sections[sect_ind].check_chair(chair_ind, player)
-
 
     def check_swap(self, section_a, chair_a, section_b, chair_b):
 
