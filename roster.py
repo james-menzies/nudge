@@ -61,11 +61,17 @@ class Roster:
 
         return cluster
 
-    def seat_player(self, sect_ind, seat_ind, player):
+    def replace_player(self, sect_ind, seat_ind, player):
+
+        old_player = self.remove_player(sect_ind, seat_ind)
+
         section = self.__sections[sect_ind]
         try:
             section.seat_player(seat_ind, player)
+            return old_player
         except ValueError as error:
+            if old_player:
+                section.seat_player(seat_ind, old_player)
             return error
 
     def remove_player(self, sect_ind, seat_ind):
