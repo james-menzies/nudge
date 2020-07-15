@@ -61,43 +61,47 @@ class Roster:
 
         return cluster
 
-    def replace_player(self, sect_ind, seat_ind, player):
+    def replace_player(self, sect_ind, chair_ind, player):
 
-        old_player = self.remove_player(sect_ind, seat_ind)
+        old_player = self.remove_player(sect_ind, chair_ind)
 
         section = self.__sections[sect_ind]
         try:
-            section.seat_player(seat_ind, player)
+            section.seat_player(chair_ind, player)
             return old_player
         except ValueError as error:
             if old_player:
-                section.seat_player(seat_ind, old_player)
+                section.seat_player(chair_ind, old_player)
             return error
 
-    def remove_player(self, sect_ind, seat_ind):
-        return self.__sections[sect_ind].remove_player(seat_ind)
+    def remove_player(self, sect_ind, chair_ind):
+        return self.__sections[sect_ind].remove_player(chair_ind)
 
-    def check_swap(self, section_a, seat_a, section_b, seat_b):
+    def check_chair(self, sect_ind, chair_ind, player):
+        return self.__sections[sect_ind].check_chair(chair_ind, player)
+
+
+    def check_swap(self, section_a, chair_a, section_b, chair_b):
 
         suitability = []
 
-        player_a = self.sections[section_a].players[seat_a]
-        player_b = self.sections[section_b].players[seat_b]
+        player_a = self.sections[section_a].players[chair_a]
+        player_b = self.sections[section_b].players[chair_b]
 
-        case_a = self.sections[section_b].check_chair(seat_b, player_a)
-        case_b = self.sections[section_a].check_chair(seat_a, player_b)
+        case_a = self.sections[section_b].check_chair(chair_b, player_a)
+        case_b = self.sections[section_a].check_chair(chair_a, player_b)
 
         suitability.append(case_a)
         suitability.append(case_b)
         return tuple(suitability)
 
-    def swap_players(self, section_a, seat_a, section_b, seat_b):
-        suitability = self.check_swap(section_a, seat_b, section_b, seat_b)
+    def swap_players(self, section_a, chair_a, section_b, chair_b):
+        suitability = self.check_swap(section_a, chair_b, section_b, chair_b)
         if Suitability.Illegal in suitability:
             raise ValueError("An illegal swap operation was attempted in roster")
 
-        player_a = self.remove_player(section_a, seat_b)
-        player_b = self.remove_player(section_b, seat_b)
+        player_a = self.remove_player(section_a, chair_b)
+        player_b = self.remove_player(section_b, chair_b)
 
-        self.seat_player(section_b, seat_b, player_a)
-        self.seat_player(section_a, seat_a, player_b)
+        self.seat_player(section_b, chair_b, player_a)
+        self.seat_player(section_a, chair_a, player_b)

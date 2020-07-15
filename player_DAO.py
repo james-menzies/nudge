@@ -25,10 +25,8 @@ with open('../resources/players.csv', 'r') as file:
                 except KeyError:
                     print(f"foreign sec role found in import of {row[0]}")
 
-
         player_list.append(Player(row[0],
                                   Instrument[row[1]],
                                   Role[row[2]],
                                   Employment[row[3]],
                                   sec_role))
-

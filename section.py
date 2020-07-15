@@ -17,6 +17,10 @@ class Section:
         self.__roles = {}
 
     @property
+    def instrument(self):
+        return self.__instrument
+
+    @property
     def players(self):
         return tuple(self.__players)
 
