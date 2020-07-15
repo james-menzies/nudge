@@ -1,6 +1,7 @@
 choice_loop_start = "Please make a selection\n"
 choice_loop_end = "Go back to main"
 
+
 def choice_loop(options, start=choice_loop_start,
                 end=choice_loop_end):
     terminate = False
