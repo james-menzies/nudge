@@ -9,12 +9,7 @@ def choice_loop(options, start=choice_loop_start,
 
     terminate = False
     while not terminate:
-
-        if name == 'nt':
-            system('cls')
-        else:
-            system('clear')
-
+        clear_screen()
         if refresh_object:
             print(refresh_object)
         print(start)
@@ -183,3 +178,8 @@ def create_option_block(title):
 
     return (options, options['items'])
 
+def clear_screen():
+    if name == 'nt':
+        system('cls')
+    else:
+        system('clear')

@@ -33,8 +33,7 @@ class Roster:
 
     def __repr__(self):
         result = self.title + "\n\n"
-        result += render_columns(self.__sections[0:3])
-        result += render_columns(self.__sections[3:])
+        result += render_columns(self.__sections[:])
         return result
 
     def replace_player(self, sect_ind, chair_ind, player):
