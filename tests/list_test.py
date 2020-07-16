@@ -22,7 +22,8 @@ block2 = {
 block1['items'] = pop_items()
 block2['items'] = pop_items()
 
-result = list_selection(block1, block2)
+results = list_selection(block1, block2, multi=2)
 
-print(f"You selected {result}")
+for result in results:
+    print(f"You selected {result}")
 

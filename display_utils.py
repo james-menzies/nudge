@@ -18,15 +18,8 @@ def choice_loop(options, start=choice_loop_start,
 
         options[user_choice]()
 
-def title_exists(*option_blocks):
 
-    for block in option_blocks:
-        if "title" not in block.keys():
-            return False
-
-    return True
-
-def list_selection(*option_blocks):
+def list_selection(*option_blocks, multi=1):
 
     display = ""
     # check for titles
@@ -60,21 +53,28 @@ def list_selection(*option_blocks):
 
     display += columns
 
-    chosen_index = None
-    while not chosen_index:
+    chosen_indexes = None
+    while not chosen_indexes:
         print(display)
         print()
         choice = input(">> ")
-        chosen_index = convert_input_to_int(choice, 1, total_options) - 1
+        chosen_indexes = convert_input_to_int(choice, 1, total_options, multi)
 
-    target_index = chosen_index
+    choices = []
+    for index in chosen_indexes:
+        choice = get_targeted_option(index - 1, *option_blocks)
+        choices.append(choice)
+
+    return tuple(choices)
+
+
+def title_exists(*option_blocks):
+
     for block in option_blocks:
-        items = list(block['items'].keys())
-        if target_index < len(items):
-            target_key = items[target_index]
-            return block['items'][target_key]
-        else:
-            target_index -= len(items)
+        if "title" not in block.keys():
+            return False
+
+    return True
 
 
 def split_column(column):
@@ -133,17 +133,31 @@ def render_columns(columns):
     return result
 
 
-def convert_input_to_int(user_input, min, max, multi=False):
+def convert_input_to_int(user_input, min, max, multi=1):
     err_message = "Please input a valid number."
     try:
         user_input = user_input.split()
-        num
+        nums = []
+        for i in range(0, multi):
+            nums.append(int(user_input[i]))
+
     except ValueError:
         print(err_message)
         return None
 
-    if min <= user_input <= max:
-        return user_input
-    else:
-        print(err_message)
-        return None
+    for num in nums:
+        if not min <= num <= max:
+            print(err_message)
+            return None
+
+    return nums
+
+
+def get_targeted_option(index, *option_blocks):
+    for block in option_blocks:
+        items = list(block['items'].keys())
+        if index < len(items):
+            target_key = items[index]
+            return block['items'][target_key]
+        else:
+            index -= len(items)
