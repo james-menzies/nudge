@@ -76,7 +76,7 @@ class Roster:
             raise ValueError("An illegal swap operation was attempted in roster")
 
         player_a = self.remove_player(section_a, chair_b)
-        player_b = self.remove_player(section_b, chair_b)
+        player_b = self.remove_player(section_b, chair_a)
 
-        self.seat_player(section_b, chair_b, player_a)
-        self.seat_player(section_a, chair_a, player_b)
+        self.replace_player(section_b, chair_b, player_a)
+        self.replace_player(section_a, chair_a, player_b)

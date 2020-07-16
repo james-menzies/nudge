@@ -19,9 +19,11 @@ def choice_loop(options, start=choice_loop_start,
         options[user_choice]()
 
 
-def list_selection(*option_blocks, multi=1):
+def list_selection(*option_blocks, multi=1, prompt=""):
 
-    display = ""
+    display = prompt
+    if prompt:
+        display += '\n\n'
     # check for titles
     render_titles = title_exists(*option_blocks)
     if render_titles:
@@ -56,7 +58,6 @@ def list_selection(*option_blocks, multi=1):
     chosen_indexes = None
     while not chosen_indexes:
         print(display)
-        print()
         choice = input(">> ")
         chosen_indexes = convert_input_to_int(choice, 1, total_options, multi)
 
@@ -65,7 +66,10 @@ def list_selection(*option_blocks, multi=1):
         choice = get_targeted_option(index - 1, *option_blocks)
         choices.append(choice)
 
-    return tuple(choices)
+    if len(choices) == 1:
+        return choices[0]
+    else:
+        return tuple(choices)
 
 
 def title_exists(*option_blocks):
@@ -161,3 +165,13 @@ def get_targeted_option(index, *option_blocks):
             return block['items'][target_key]
         else:
             index -= len(items)
+
+def create_option_block(title):
+    options = {
+        "items": {}
+    }
+    if title:
+        options['title'] = title
+
+    return (options, options['items'])
+
