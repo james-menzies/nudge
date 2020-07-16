@@ -8,7 +8,7 @@ def save():
     pass
 
 
-with open('../resources/players.csv', 'r') as file:
+with open('resources/players.csv', 'r') as file:
     reader = csv.reader(file)
     first_line = True
     for row in reader:

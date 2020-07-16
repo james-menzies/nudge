@@ -3,20 +3,20 @@ choice_loop_end = "Go back to main"
 
 
 def choice_loop(options, start=choice_loop_start,
-                end=choice_loop_end):
+                end=choice_loop_end, prompt="", refresh_object=None):
+
     terminate = False
     while not terminate:
 
+        print(refresh_object)
         print(start)
+        options['items'][end] = None
+        user_choice = list_selection(options, prompt=prompt)
 
-        options[end] = lambda: None
+        if not user_choice:
+            break
 
-        user_choice = list_selection(list(options.keys()))
-
-        if user_choice == end:
-            terminate = True
-
-        options[user_choice]()
+        user_choice()
 
 
 def list_selection(*option_blocks, multi=1, prompt=""):

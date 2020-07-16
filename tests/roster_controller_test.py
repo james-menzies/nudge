@@ -6,6 +6,7 @@ roster = Roster([8, 6, 5, 4, 3])
 roster_operations.autofill_section(roster)
 
 print(roster)
-handle_fill(roster)
+
+handle_swap(roster)
 
 print(roster)
