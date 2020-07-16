@@ -138,3 +138,13 @@ class Suitability(enum.Enum):
     NonRecommended = 4
     # Wrong Instrument
     Illegal = 5
+
+suitabilities = {
+
+    Suitability.OK: "Regular",
+    Suitability.NonPrimary: "Secondary Role",
+    Suitability.Casual: "Regular Casual",
+    Suitability.LessRecommended: "Less Recommended",
+    Suitability.NonRecommended: "Not Recommended",
+    Suitability.Illegal: "Wrong Instrumentalist"
+}

@@ -59,6 +59,25 @@ class Instrument(enum.Enum):
     cello = 2
     double_bass = 3
 
+    def __repr__(self):
+        if self == Instrument.violin:
+            return "Violin"
+        elif self == Instrument.viola:
+            return "Viola"
+        elif self == Instrument.cello:
+            return "Cello"
+        else:
+            return "Double Bass"
+
+
+instruments = {
+    Instrument.violin: "Violin",
+    Instrument.viola: "Viola",
+    Instrument.cello: "Cello",
+    Instrument.double_bass: "Double Bass"
+
+}
+
 
 class Employment(enum.Enum):
     permanent = 0

@@ -1,3 +1,5 @@
+from os import system,name
+
 choice_loop_start = "Please make a selection\n"
 choice_loop_end = "Go back to main"
 
@@ -8,15 +10,21 @@ def choice_loop(options, start=choice_loop_start,
     terminate = False
     while not terminate:
 
-        print(refresh_object)
+        if name == 'nt':
+            system('cls')
+        else:
+            system('clear')
+
+        if refresh_object:
+            print(refresh_object)
         print(start)
         options['items'][end] = None
         user_choice = list_selection(options, prompt=prompt)
 
-        if not user_choice:
-            break
-
-        user_choice()
+        if user_choice:
+            user_choice()
+        else:
+            terminate = True
 
 
 def list_selection(*option_blocks, multi=1, prompt=""):
@@ -145,7 +153,7 @@ def convert_input_to_int(user_input, min, max, multi=1):
         for i in range(0, multi):
             nums.append(int(user_input[i]))
 
-    except ValueError:
+    except (ValueError, IndexError):
         print(err_message)
         return None
 

@@ -1,12 +1,13 @@
 from display_utils import *
 from roster_operations import *
+from section import suitabilities
 
 
 def handle_swap(roster):
 
     options, items = create_option_block("")
     for data in Instrument:
-        items[data.name] = data
+        items[instruments[data]] = data
 
     chosen_inst = list_selection(options, prompt="Select Instrument")
     sections = {}
@@ -20,7 +21,12 @@ def handle_swap(roster):
         option, items = create_option_block(section.name)
         items = option['items']
         for index, player in enumerate(section.players):
-            items[player.name] = (sections[section], index)
+            ret_value = (sections[section], index)
+            if player:
+                items[player.name] = ret_value
+            else:
+                name = f"Vacant Chair ({index + 1})"
+                items[name] = ret_value
         options.append(option)
 
     chosen_players = list_selection(*options, multi=2,
@@ -50,7 +56,7 @@ def handle_fill(roster):
 
     options, items = create_option_block("")
     for replacement in replacements:
-        user_str = f"{replacement['player'].name} ({replacement['suitability'].value}"
+        user_str = f"{replacement['player'].name} ({suitabilities[replacement['suitability']]})"
         items[user_str] = replacement['player']
 
     chosen_replacement = list_selection(options, prompt="Choose Replacement Player")
@@ -59,7 +65,7 @@ def handle_fill(roster):
 
 def handle_remove(roster):
     player_coords = __select_single_player(roster)
-    roster.remove_player(*player_coords)
+    player = roster.remove_player(*player_coords)
 
 
 def __select_single_player(roster):
@@ -72,5 +78,13 @@ def __select_single_player(roster):
 def __select_child(parent, prompt="", title=""):
     options, items = create_option_block(title)
     for index, child in enumerate(parent):
-        items[child.name] = index
+        if child:
+            items[child.name] = index
+        else:
+            name = f"Vacant Chair ({index + 1})"
+            items[name] = index
     return list_selection(options, prompt=prompt)
+
+def reset_roster(roster):
+    for player in player_list:
+        player.availability = Availability.reserve
