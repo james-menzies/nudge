@@ -5,28 +5,23 @@ from display_utils import render_columns, split_column
 
 def save():
     with open(file_str, 'w') as file:
+        file.write("name,instrument,primary_role,employment_type,secondary_roles\n")
         writer = csv.writer(file)
         for player in player_list:
-
-            sec_role_str = []
-            for role in player.sec_role:
-                sec_role_str.append(role.name)
-
-            sec_role_str = ",".join(sec_role_str)
 
             row = [
                 player.name,
                 player.instrument.name,
                 player.prim_role.name,
                 player.emp.name,
-                sec_role_str
+                player.get_sec_roles()
             ]
             writer.writerow(row)
 
 
 player_list = []
 revalidate = False
-file_str = '../resources/players.csv'
+file_str = 'resources/players.csv'
 
 
 with open(file_str, 'r') as file:
@@ -57,7 +52,6 @@ with open(file_str, 'r') as file:
         except:
             print(f"invalid state of object. Player not imported.")
             revalidate = True
-
 
 if revalidate:
     save()

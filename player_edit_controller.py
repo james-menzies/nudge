@@ -16,11 +16,15 @@ def handle_add():
 
 def handle_view():
     player = get_player_from_selection()
+    if not player:
+        return
+
     clear_screen()
+
     print(f"""Name: {player.name}
 Instrument: {instruments[player.instrument]}
 Primary Role: {roles[player.prim_role]}
-Secondary Roles: {player.sec_role}
+Secondary Roles: {player.get_sec_roles(view_friendly=True)}
 Employment: {employment_types[player.emp]}
 """)
     input("Press ENTER to continue>> ")
@@ -30,6 +34,8 @@ def handle_edit():
 
     try:
         player = get_player_from_selection()
+        if not player:
+            return
         edit_player(player)
         save()
         print("Player successfully edited. Press ENTER to continue>> ")
@@ -40,6 +46,8 @@ def handle_delete():
 
     try:
         player = get_player_from_selection()
+        if not player:
+            return
         player_list.remove(player)
         save()
         input("Player successfully deleted. Press ENTER to continue>> ")
@@ -52,7 +60,7 @@ def get_player_from_selection():
     for player in player_list:
         items[get_player_string(player)] = player
 
-    return list_selection(options, prompt="Select Player:", col_width=40)
+    return list_selection(options, prompt="Select Player:", col_width=40, blank=True)
 
 
 def get_player_string(player):

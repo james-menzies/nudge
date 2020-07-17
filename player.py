@@ -35,6 +35,16 @@ class Player:
 
         return prim or sec
 
+    def get_sec_roles(self, view_friendly=False):
+        sec_role_str = []
+        for role in self.sec_role:
+            if view_friendly:
+                role_str = roles[role]
+            else:
+                role_str = role.name
+            sec_role_str.append(role_str)
+        return ",".join(sec_role_str)
+
 
 class Role(enum.Enum):
     concert_master = 0
