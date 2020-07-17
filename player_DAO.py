@@ -3,16 +3,29 @@ from player import *
 from display_utils import render_columns, split_column
 
 
-def save(file):
-    pass
-
+def save():
+    with open(file_str, 'w') as file:
+        for player in player_list:
+            row = [
+                player.name,
+                player.instrument.name,
+                player.prim_role.name,
+                player.emp.name,
+                player.sec_role[0].name
+            ]
+            writer = csv.writer(file)
+            writer.writerow(row)
 
 
 player_list = []
-with open('resources/players.csv', 'r') as file:
+revalidate = False
+file_str = '../resources/players.csv'
+
+
+with open(file_str, 'r') as file:
     reader = csv.reader(file)
     first_line = True
-    revalidate = False
+
 
     for row in reader:
         if first_line:
@@ -34,9 +47,10 @@ with open('resources/players.csv', 'r') as file:
                                       Role[row[2]],
                                       Employment[row[3]],
                                       sec_role))
-        except ValueError:
+        except:
             print(f"invalid state of object. Player not imported.")
             revalidate = True
 
-    if revalidate:
-        save()
+
+if revalidate:
+    save()
