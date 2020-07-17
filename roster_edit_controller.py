@@ -1,6 +1,7 @@
 from display_utils import *
 from roster_operations import *
 from section import suitabilities
+from print_roster import print_roster
 
 continue_str = "Press ENTER to continue >> "
 
@@ -46,7 +47,7 @@ def handle_swap(roster):
         return
     permission = True
     if Suitability.LessRecommended in viability \
-        or Suitability.NonRecommended in viability:
+            or Suitability.NonRecommended in viability:
         permission = user_confirmation("""
 It appears there are people about to be put in roles outside of their normal duties. 
 Would you like to proceed? (y/n) >>""")
@@ -71,11 +72,17 @@ def handle_auto_populate(roster):
 
 
 def handle_print(roster):
-    pass
+    clear_screen()
+    try:
+        print_roster(roster)
+        print(f"{roster.title} successfully printed")
+    except:
+        print("An error occurred while printing")
+    finally:
+        input(continue_str)
 
 
 def handle_fill(roster):
-
     clear_screen()
     print("Fill / Replace Player")
     player_coords = __select_single_player(roster)
@@ -125,6 +132,7 @@ def __select_child(parent, prompt="", title=""):
             name = f"Vacant Chair ({index + 1})"
             items[name] = index
     return list_selection(options, prompt=prompt)
+
 
 def reset_roster(roster):
     for player in player_list:
