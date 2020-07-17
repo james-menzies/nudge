@@ -1,7 +1,6 @@
 import csv
 from os import path
 from player import *
-from display_utils import render_columns, split_column
 
 
 def save():
@@ -24,12 +23,10 @@ player_list = []
 revalidate = False
 file_str = 'resources/players.csv'
 
-
 if path.exists(file_str):
     with open(file_str, 'r') as file:
         reader = csv.reader(file)
         first_line = True
-
 
         for row in reader:
             if first_line:
