@@ -3,56 +3,67 @@ from player_DAO import player_list, save
 from creation_flows import create_new_player, edit_player
 from display_utils import *
 
+continue_str = "Press ENTER to continue>> "
 
 def handle_add():
-
+    clear_screen()
     try:
         player = create_new_player()
         player_list.append(player)
         save()
+        clear_screen()
+        print("Player successfully created.\n\n")
+        print(get_detailed_player_string(player))
+        input(continue_str)
     except:
         print("Unknown error creating player.")
+        input(continue_str)
 
 
 def handle_view():
+
+    clear_screen()
     player = get_player_from_selection()
     if not player:
         return
 
     clear_screen()
 
-    print(f"""Name: {player.name}
-Instrument: {instruments[player.instrument]}
-Primary Role: {roles[player.prim_role]}
-Secondary Roles: {player.get_sec_roles(view_friendly=True)}
-Employment: {employment_types[player.emp]}
-""")
-    input("Press ENTER to continue>> ")
+    print(get_detailed_player_string(player))
+    input(continue_str)
 
 
 def handle_edit():
 
     try:
+        clear_screen()
         player = get_player_from_selection()
         if not player:
             return
+        clear_screen()
         edit_player(player)
         save()
-        print("Player successfully edited. Press ENTER to continue>> ")
+        print(f"Player successfully edited\n\n")
+        print(get_detailed_player_string(player))
+        input(continue_str)
     except:
         print("Unknown error occurred editing player.")
+        input(continue_str)
 
 def handle_delete():
 
     try:
+        clear_screen()
         player = get_player_from_selection()
         if not player:
             return
         player_list.remove(player)
         save()
-        input("Player successfully deleted. Press ENTER to continue>> ")
+        input("Player successfully deleted.")
+        input(continue_str)
     except:
         print("Player unable to be removed.")
+        input(continue_str)
 
 
 def get_player_from_selection():
@@ -67,4 +78,10 @@ def get_player_string(player):
     return f"{player.name} ({instruments[player.instrument]})"
 
 
+def get_detailed_player_string(player):
+    return f"""Name: {player.name}
+Instrument: {instruments[player.instrument]}
+Primary Role: {roles[player.prim_role]}
+Secondary Roles: {player.get_sec_roles(view_friendly=True)}
+Employment: {employment_types[player.emp]}"""
 

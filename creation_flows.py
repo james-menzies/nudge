@@ -44,6 +44,7 @@ def __get_player_data(edited_player=None):
         edit_insert = " "
 
     name = input(f"Players Name{edit_insert}>> ")
+    clear_screen()
 
     if edited_player:
         edit_insert = f" (currently {instruments[edited_player.instrument]})"
@@ -52,6 +53,7 @@ def __get_player_data(edited_player=None):
                                          instruments,
                                          prompt=f"Select Instrument{edit_insert}")
 
+    clear_screen()
     if instrument != Instrument.violin:
         exclusions = [
             Role.principal_2nd,
@@ -69,12 +71,14 @@ def __get_player_data(edited_player=None):
                                         *exclusions,
                                         prompt=f"Select Primary Role{edit_insert}")
 
+    clear_screen()
     if edited_player:
         edit_insert = f" (currently {employment_types[edited_player.emp]})"
     emp = get_enum_from_selection(Employment,
                                   employment_types,
                                   prompt=f"Select Employment Type {edit_insert}")
 
+    clear_screen()
     exclusions.append(prim_role)
 
     if edited_player:
@@ -92,6 +96,7 @@ def __get_player_data(edited_player=None):
                                        *exclusions,
                                        prompt=f"Select Secondary Role {edit_insert}",
                                        blank=True)
+    clear_screen()
     if sec_role:
         sec_role = [sec_role]
     else:

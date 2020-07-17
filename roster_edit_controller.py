@@ -64,6 +64,8 @@ def handle_fill(roster):
 
 
 def handle_remove(roster):
+    clear_screen()
+    print("Delete Player")
     player_coords = __select_single_player(roster)
     player = roster.remove_player(*player_coords)
 
