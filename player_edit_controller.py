@@ -23,6 +23,9 @@ def handle_add():
 def handle_view():
 
     clear_screen()
+    if len(player_list) == 0:
+        input("There are no players registered, hit ENTER to go back >>")
+        return
     player = get_player_from_selection()
     if not player:
         return
@@ -57,9 +60,15 @@ def handle_delete():
         player = get_player_from_selection()
         if not player:
             return
-        player_list.remove(player)
-        save()
-        print("Player successfully deleted.")
+
+        confirmation = user_confirmation("""
+Are you sure you want to delete this player? (y/n) >> """)
+        if confirmation:
+            player_list.remove(player)
+            save()
+            print("Player successfully deleted.")
+        else:
+            print("Player deletion aborted.")
         input(continue_str)
     except:
         print("Player unable to be removed.")

@@ -94,7 +94,7 @@ def __get_player_data(edited_player=None):
     sec_role = get_enum_from_selection(Role,
                                        roles,
                                        *exclusions,
-                                       prompt=f"Select Secondary Role {edit_insert}",
+                                       prompt=f"Select Secondary Role, leave blank to skip {edit_insert}",
                                        blank=True)
     clear_screen()
     if sec_role:
