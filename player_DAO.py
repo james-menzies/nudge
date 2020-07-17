@@ -5,15 +5,22 @@ from display_utils import render_columns, split_column
 
 def save():
     with open(file_str, 'w') as file:
+        writer = csv.writer(file)
         for player in player_list:
+
+            sec_role_str = []
+            for role in player.sec_role:
+                sec_role_str.append(role.name)
+
+            sec_role_str = ",".join(sec_role_str)
+
             row = [
                 player.name,
                 player.instrument.name,
                 player.prim_role.name,
                 player.emp.name,
-                player.sec_role[0].name
+                sec_role_str
             ]
-            writer = csv.writer(file)
             writer.writerow(row)
 
 
