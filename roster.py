@@ -70,7 +70,7 @@ class Roster:
         return tuple(suitability)
 
     def swap_players(self, section_a, chair_a, section_b, chair_b):
-        suitability = self.check_swap(section_a, chair_b, section_b, chair_b)
+        suitability = self.check_swap(section_a, chair_a, section_b, chair_b)
         if Suitability.Illegal in suitability:
             raise ValueError("An illegal swap operation was attempted in roster")
 

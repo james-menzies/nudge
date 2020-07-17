@@ -33,17 +33,17 @@ def handle_swap(roster):
                 items[name] = ret_value
         options.append(option)
 
-    try:
-        chosen_players = list_selection(*options, multi=2,
+    chosen_players = list_selection(*options, multi=2,
                                     prompt="Select 2 players to swap")
+
+    clear_screen()
+    player1, player2 = chosen_players
+    try:
+        viability = roster.check_swap(*player1, *player2)
     except:
         print("An error has occurred. Players not swapped.")
         input(continue_str)
         return
-
-    clear_screen()
-    player1, player2 = chosen_players
-    viability = roster.check_swap(*player1, *player2)
     permission = True
     if Suitability.LessRecommended in viability \
         or Suitability.NonRecommended in viability:
