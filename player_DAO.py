@@ -1,16 +1,19 @@
 import csv
 from player import *
+from display_utils import render_columns, split_column
 
-player_list = []
 
-
-def save():
+def save(file):
     pass
 
 
-with open('resources/players.csv', 'r') as file:
+
+player_list = []
+with open('../resources/players.csv', 'r') as file:
     reader = csv.reader(file)
     first_line = True
+    revalidate = False
+
     for row in reader:
         if first_line:
             first_line = False
@@ -25,8 +28,17 @@ with open('resources/players.csv', 'r') as file:
                 except KeyError:
                     print(f"foreign sec role found in import of {row[0]}")
 
-        player_list.append(Player(row[0],
-                                  Instrument[row[1]],
-                                  Role[row[2]],
-                                  Employment[row[3]],
-                                  sec_role))
+        try:
+            player_list.append(Player(row[0],
+                                      Instrument[row[1]],
+                                      Role[row[2]],
+                                      Employment[row[3]],
+                                      sec_role))
+        except ValueError:
+            print(f"invalid state of object. Player not imported.")
+            revalidate = True
+
+    if revalidate:
+        save()
+
+player_list_display = ListDisplay(player_list)

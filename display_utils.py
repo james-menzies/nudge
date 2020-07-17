@@ -1,4 +1,4 @@
-from os import system,name
+from os import system, name
 
 choice_loop_start = "Please make a selection\n"
 choice_loop_end = "Go back to main"
@@ -6,7 +6,11 @@ choice_loop_end = "Go back to main"
 
 def choice_loop(options, start=choice_loop_start,
                 end=choice_loop_end, prompt="", refresh_object=None):
-
+    # refresh object will be displayed on a clear screen.
+    # start text will then be displayed
+    # list selection must point to callable object
+    # end option automatically generated
+    # loop continues as long as user does not call end option
     terminate = False
     while not terminate:
         clear_screen()
@@ -22,18 +26,20 @@ def choice_loop(options, start=choice_loop_start,
             terminate = True
 
 
-def list_selection(*option_blocks, multi=1, prompt=""):
-
+def list_selection(*option_blocks, multi=1, prompt="", col_width=30, blank=False):
     display = prompt
     if prompt:
         display += '\n\n'
-    # check for titles
+
+    # check for titles, then add to display render
     render_titles = title_exists(*option_blocks)
     if render_titles:
         for block in option_blocks:
-            display += f"{block['title']:30}"
+            display += "{0:<{width}}".format(block['title'], width=col_width)
         display += "\n\n"
 
+    # prepend option number to every option
+    # then combine each column into single string
     option_counter = 1
     columns = []
     for block in option_blocks:
@@ -48,22 +54,30 @@ def list_selection(*option_blocks, multi=1, prompt=""):
 
     first_block_length = len(option_blocks[0]['items'].keys())
 
+    # render based on amount of items and columns
     if len(option_blocks) > 1:
-        columns = render_columns(columns)
+        # render columns side-by-side
+        columns = render_columns(columns, col_width=col_width)
     elif first_block_length > 10:
+        # split large column into multi then side-by-side render
         columns = split_column(columns[0])
-        columns = render_columns(columns)
+        columns = render_columns(columns, col_width=col_width)
     else:
         columns = columns[0]
 
     display += columns
 
+    # retrieve required number of selections
     chosen_indexes = None
     while not chosen_indexes:
         print(display)
         choice = input(">> ")
+        if not choice and blank:
+            return None
+
         chosen_indexes = convert_input_to_int(choice, 1, total_options, multi)
 
+    # retrieve desired object(s)
     choices = []
     for index in chosen_indexes:
         choice = get_targeted_option(index - 1, *option_blocks)
@@ -76,7 +90,6 @@ def list_selection(*option_blocks, multi=1, prompt=""):
 
 
 def title_exists(*option_blocks):
-
     for block in option_blocks:
         if "title" not in block.keys():
             return False
@@ -113,7 +126,7 @@ def split_column(column):
     return columns
 
 
-def render_columns(columns):
+def render_columns(columns, col_width=30):
     max_rows = 0
 
     result = ""
@@ -134,7 +147,7 @@ def render_columns(columns):
             else:
                 line_str = column[i]
 
-            result += "{0:30}".format(line_str)
+            result += "{0:<{width}}".format(line_str, width=col_width)
         result += "\n"
 
     return result
@@ -169,7 +182,8 @@ def get_targeted_option(index, *option_blocks):
         else:
             index -= len(items)
 
-def create_option_block(title):
+
+def create_option_block(title=""):
     options = {
         "items": {}
     }
@@ -177,6 +191,7 @@ def create_option_block(title):
         options['title'] = title
 
     return (options, options['items'])
+
 
 def clear_screen():
     if name == 'nt':

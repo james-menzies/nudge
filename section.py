@@ -78,7 +78,7 @@ class Section:
         elif role in player.sec_role:
             return Suitability.NonPrimary
         else:
-            return Suitability.NonRecommended
+            return Suitability.LessRecommended
 
     def __check_casual(self, role, player):
 
@@ -141,10 +141,10 @@ class Suitability(enum.Enum):
 
 suitabilities = {
 
-    Suitability.OK: "Regular",
-    Suitability.NonPrimary: "Secondary Role",
-    Suitability.Casual: "Regular Casual",
-    Suitability.LessRecommended: "Less Recommended",
-    Suitability.NonRecommended: "Not Recommended",
-    Suitability.Illegal: "Wrong Instrumentalist"
+    Suitability.OK: "Reg.",
+    Suitability.NonPrimary: "Sec.",
+    Suitability.Casual: "Cas.",
+    Suitability.LessRecommended: "L.R.",
+    Suitability.NonRecommended: "N.R.",
+    Suitability.Illegal: "N/A"
 }

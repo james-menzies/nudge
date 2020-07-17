@@ -11,7 +11,7 @@ class Player:
         self.instrument = check_type(instrument, Instrument)
         self.prim_role = check_type(prim_role, Role)
         self.emp = check_type(emp, Employment)
-        self.sec_role = check_type(sec_role, Role)
+        self.sec_role = tuple(check_type(sec_role, Role))
         self.availability = Availability.reserve
 
         # check for invalid violin-only attr
@@ -25,8 +25,8 @@ class Player:
                 assert_non_violin(role)
 
     def __repr__(self):
-        return f"Name: {self.name}, Instrument: {self.instrument.name}, " \
-               f"Role: {self.prim_role.name}, Employment: {self.emp.name} " \
+        return f"Name: {self.name}, Instrument: {instruments[self.instrument]}, " \
+               f"Role: {roles[self.prim_role]}, Employment: {employment_types[self.emp]} " \
                f"Other Roles: {self.sec_role}, Availability: {self.availability.name}"
 
     def performs_role(self, role):
@@ -42,6 +42,15 @@ class Role(enum.Enum):
     principal_2nd = 2
     principal = 3
     tutti = 4
+
+
+roles = {
+    Role.concert_master: "Concert Master",
+    Role.ass_concert_master: "Associate Concert Master",
+    Role.principal_2nd: "Principal 2nd Violin",
+    Role.principal: "Principal",
+    Role.tutti: "Tutti"
+}
 
 
 def get_roster_symbol(role):
@@ -83,6 +92,11 @@ class Employment(enum.Enum):
     permanent = 0
     casual = 1
 
+
+employment_types = {
+    Employment.permanent: "Permanent",
+    Employment.casual: "Casual"
+}
 
 class Availability(enum.Enum):
     engaged = 0

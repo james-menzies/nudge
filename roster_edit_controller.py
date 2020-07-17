@@ -59,7 +59,7 @@ def handle_fill(roster):
         user_str = f"{replacement['player'].name} ({suitabilities[replacement['suitability']]})"
         items[user_str] = replacement['player']
 
-    chosen_replacement = list_selection(options, prompt="Choose Replacement Player")
+    chosen_replacement = list_selection(options, prompt="Choose Player To Fill Chair", col_width=45)
     roster.replace_player(*player_coords, chosen_replacement)
 
 
