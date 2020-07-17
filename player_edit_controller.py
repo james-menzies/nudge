@@ -59,7 +59,7 @@ def handle_delete():
             return
         player_list.remove(player)
         save()
-        input("Player successfully deleted.")
+        print("Player successfully deleted.")
         input(continue_str)
     except:
         print("Player unable to be removed.")

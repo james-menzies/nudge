@@ -173,6 +173,22 @@ def convert_input_to_int(user_input, min, max, multi=1):
     return nums
 
 
+def user_confirmation(prompt):
+    answer = None
+    valid_answers = "yn"
+    error_message = "Please type 'y' or 'n'"
+    while not answer or answer not in valid_answers:
+
+        answer = input(prompt).lower()
+        if answer not in valid_answers:
+            print(error_message)
+
+    if answer == "y":
+        return True
+    else:
+        return False
+
+
 def get_targeted_option(index, *option_blocks):
     for block in option_blocks:
         items = list(block['items'].keys())
