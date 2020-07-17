@@ -9,7 +9,7 @@ def save(file):
 
 
 player_list = []
-with open('../resources/players.csv', 'r') as file:
+with open('resources/players.csv', 'r') as file:
     reader = csv.reader(file)
     first_line = True
     revalidate = False
@@ -40,5 +40,3 @@ with open('../resources/players.csv', 'r') as file:
 
     if revalidate:
         save()
-
-player_list_display = ListDisplay(player_list)

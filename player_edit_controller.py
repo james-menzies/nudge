@@ -1,4 +1,4 @@
-from player import instruments
+from player import *
 from player_DAO import player_list, save
 from creation_flows import create_new_player, edit_player
 from display_utils import *
@@ -15,17 +15,15 @@ def handle_add():
 
 
 def handle_view():
+    player = get_player_from_selection()
     clear_screen()
-    string = "Player List \n\n"
-    players = ""
-    for player in player_list:
-        players += get_player_string(player) + "\n"
-
-    players = split_column(players)
-    players = render_columns(players, col_width=40)
-    string += players
-    print(string)
-    input("press ENTER to return >> ")
+    print(f"""Name: {player.name}
+Instrument: {instruments[player.instrument]}
+Primary Role: {roles[player.prim_role]}
+Secondary Roles: {player.sec_role}
+Employment: {employment_types[player.emp]}
+""")
+    input("Press ENTER to continue>> ")
 
 
 def handle_edit():
@@ -34,7 +32,7 @@ def handle_edit():
         player = get_player_from_selection()
         edit_player(player)
         save()
-        print("Player successfully edited.")
+        print("Player successfully edited. Press ENTER to continue>> ")
     except:
         print("Unknown error occurred editing player.")
 
@@ -42,9 +40,9 @@ def handle_delete():
 
     try:
         player = get_player_from_selection()
-        del player
+        player_list.remove(player)
         save()
-        print("Player successfully deleted.")
+        input("Player successfully deleted. Press ENTER to continue>> ")
     except:
         print("Player unable to be removed.")
 
