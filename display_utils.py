@@ -40,14 +40,14 @@ def list_selection(*option_blocks, multi=1, prompt="", col_width=30, blank=False
 
     # prepend option number to every option
     # then combine each column into single string
-    option_counter = 1
+    option_counter = 0
     columns = []
     for block in option_blocks:
         column = ""
         items = block['items'].keys()
         for item in items:
-            column += f"{option_counter}: {item}\n"
             option_counter += 1
+            column += f"{option_counter}: {item}\n"
         columns.append(column)
 
     total_options = option_counter

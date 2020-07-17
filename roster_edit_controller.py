@@ -80,6 +80,10 @@ def handle_fill(roster):
     print("Fill / Replace Player")
     player_coords = __select_single_player(roster)
     replacements = get_player_recommendations(roster, *player_coords)
+    if len(replacements) == 0:
+        print("There are no suitable players for this position")
+        input("Press ENTER to go back >> ")
+        return
 
     options, items = create_option_block("")
     for replacement in replacements:

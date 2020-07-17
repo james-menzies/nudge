@@ -10,10 +10,10 @@ def handle_add():
     try:
         player = create_new_player()
         player_list.append(player)
-        save()
         clear_screen()
-        print("Player successfully created.\n\n")
-        print(get_detailed_player_string(player))
+        print("Player successfully created.\n")
+        save()
+        print(get_detailed_player_string(player), end="\n\n")
         input(continue_str)
     except:
         print("Unknown error creating player.")
@@ -32,7 +32,7 @@ def handle_view():
 
     clear_screen()
 
-    print(get_detailed_player_string(player))
+    print(get_detailed_player_string(player), end="\n\n")
     input(continue_str)
 
 
@@ -45,8 +45,8 @@ def handle_edit():
             return
         clear_screen()
         edit_player(player)
-        save()
         print(f"Player successfully edited\n\n")
+        save()
         print(get_detailed_player_string(player))
         input(continue_str)
     except:
@@ -65,8 +65,8 @@ def handle_delete():
 Are you sure you want to delete this player? (y/n) >> """)
         if confirmation:
             player_list.remove(player)
-            save()
             print("Player successfully deleted.")
+            save()
         else:
             print("Player deletion aborted.")
         input(continue_str)
