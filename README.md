@@ -73,21 +73,21 @@ If the user merely wishes to try the functionality of the program, without going
 
 ## User Experience
 
-> NB: This information is also available to the user by prepending the --help argument when executing the application. Also note that it is required to have Python version 3x installed for the program to run.
+> NB: This information is also available to the user by prepending the --help argument when executing the application. Also, note that it is required to have Python version 3x installed for the program to run.
 
 ### General Navigation
 
 Most of the application is traversed through list selection which done consistently through entering numbers into the terminal. The input is always tested and handled for validity to ensure the program will continue properly regardless of the actual input. In fact, the only actual typing required by the user is when typing a name when editing a player.
 
-There are 2 main parts to the application; where the user can manage the player database, and roster creation. Both of these are accessed from the main menu.
+There are 2 main parts to the application; where the user can manage the player database and roster creation. Both of these are accessed from the main menu.
 
 ### Player Management
 
-There are four operations that can be performed here, if the user wishes to cancel any action mid operation, all they need do is press ENTER whilst leaving the input blank.
+There are four operations that can be performed here if the user wishes to cancel any action mid-operation, all they need do is press ENTER whilst leaving the input blank.
 
 * __View:__ Upon selecting this option the user will be presented with the names of all the stored players with their instrument. Upon selecting a player, more detailed info about that person will be displayed.
 
-* __Add:__ This will take the user through the player creation flow, and upon completion the new player will be added to the player bank. This flow can be cancelled safely at any point.
+* __Add:__ This will take the user through the player creation flow, and upon completion, the new player will be added to the player bank. This flow can be canceled safely at any point.
 
 * __Delete:__ This will remove the player. The user will be asked to confirm the action.
 
@@ -109,6 +109,20 @@ The user will be taken through an initial creation flow where the name and size 
 
 * __Print__: This will export the roster in its current state to the Rosters folder. The roster will be stored in plain text.
 
+## Control Flow Diagrams
+
+### Main Program Loop
+
+### List Selection Logic
+
+![List Selection Logic Flow](docs/Diagrams/List%20Selection.png)
+
+### Model UML Diagram
+
+### Player Edit 
+
+### Roster Edit
+
 ## Implementation Plan
 
 Here is a high level overview of the timeline for feature development. 
@@ -120,7 +134,7 @@ Here is a high level overview of the timeline for feature development.
 |Basic player import functionality | 14/7 | Yes|
 | Section and Roster classes implemented | 15/7| Yes |
 | Player recommendation and autofill functionality | 15/7| Yes |
-| Fully implemented list selection with multi options, multi columns et al | 16/7 | Yes |
+| Fully implemented list selection with multi-options, multi-columns et al | 16/7 | Yes |
 | Roster Edit Controller and Views | 16/7 | Yes |
 | Player Edit Controller and Views | 17/7 | Yes |
 | Major Testing / Bug Removal | 17/7 | Yes |
