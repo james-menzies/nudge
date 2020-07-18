@@ -7,7 +7,7 @@ The utility of this application is two-fold. It is designed to:
 
 1. Maintain a pseudo-database of musicians, including what instrument they play, and the specific roles that they perform. The program allows for basic CRUD operations to be performed on these musicians.
 
-2. Design rosters for specific concert programs, allowing both for manual and automatic filling of positions, whilst ensuring that players aren't put into inappropriate positions.
+2. Design rosters for specific concert programs, allowing both for manual and automatic filling of positions, whilst ensuring that players aren't put into inappropriate positions. A roster will be able to printed as well.
 
 ### String Rostering 101
 
@@ -28,13 +28,17 @@ Violin roles are a little different:
 * 1st Violin, 3rd chair is the __Principal__
 * 2nd Violin, 1st chair is the __Principal 2nd Violin__
 
-There are two types of employment in the profession as well; regular and casual musicians. Regular musicians are kept on salary whilst casual musicians are brought in for specific programs. 
-
+There are two types of employment in the profession as well; regular and casual musicians. Regular musicians are kept on salary whilst casual musicians are brought in for specific programs. It's important to ensure when rostering that you are making full use of your regular musicians before spending money on casual musicians.
 
 ### The Rules of the Game
 
-A musician should always sit in their designated position, however a secondary position can also be assigned to that player. Ultimately however, the program will allow any musician to sit in any chair provided that they play the appropriate instrument. A musician can only be associated with a single string instrument, the norm in the classical music profession.
+Sometimes how these rules are governed can differ slightly from orchestra to orchestra, so the following rule set has been adopted for maximum compatibility:
+
+* A musician should always sit in their designated position
+* However, a secondary position can also be assigned to that player
+* Ultimately, the program will allow any musician to sit in any chair provided that they play the appropriate instrument. 
+* A musician can only be associated with a single string instrument, the norm in the classical music profession.
 
 ### Who is this Program for?
 
-This app is appropriate for both orchestral administrators who need to 
+This app is appropriate for both orchestral administrators who need to roster musicians in a way that stays consistent with all of the rules above, whilst reducing the manual nature of the task. Generally, this is a task that is beneath most people, therefore by automating much of the process it will help ensure that string rosters are delivered in timely and efficient manner.
