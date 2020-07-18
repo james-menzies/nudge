@@ -1,4 +1,4 @@
-player_init_error = "Wrong data type submitted in model construction"
+player_init_error = "Attempted to assign the wrong data type to a model object"
 
 
 def check_type(obj, obj_type, throw=True):

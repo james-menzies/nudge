@@ -1,5 +1,7 @@
-#String Section Rostering Utility
+# String Section Rostering Utility
 ## Software Development Plan
+
+> __NB__ If running this program from the terminal, it is essential that it is run from the src folder as the working directory. To run the program, execute the main.py file.
 
 ### Purpose
 
@@ -20,7 +22,7 @@ Therefore there are five sections in a string section:
 * Cellos
 * Double Bass
 
-There are also rules governed by the positions within each section that a musician will sit. There are two categories of players; principal and tutti musicians. Principals will always sit in the first chair of their respective sections, whereas tutti players will sit anywhere else.
+There are also rules governed by the positions within each section that a musician will occupy. There are two categories of players; principal and tutti musicians. Principals will always sit in the first chair of their respective sections, whereas tutti players will sit anywhere else.
 
 Violin roles are a little different:
 * 1st Violin, 1st chair is known as the __Concert Master__
@@ -34,20 +36,20 @@ There are two types of employment in the profession as well; regular and casual 
 
 Sometimes how these rules are governed can differ slightly from orchestra to orchestra, so the following ruleset has been adopted for maximum compatibility:
 
-* A musician should always sit in their designated position
-* However, a secondary position can also be assigned to that player
+* A musician should always sit in their designated position.
+* However, a secondary position can also be assigned to that player.
 * Ultimately, the program will allow any musician to sit in any chair provided that they play the appropriate instrument. 
-* A musician can only be associated with a single string instrument, the norm in the classical music profession.
+* A musician can only be associated with a single string instrument.
 
 ### Who is this Program for?
 
-This app is appropriate for both orchestral administrators who need to roster musicians in a way that stays consistent with all of the rules above, whilst reducing the manual nature of the task. Generally, this is a task that is beneath most people, therefore automating much of the process will help ensure that string rosters are delivered in a timely and efficient manner.
+This app is appropriate for both orchestral administrators and string principals who need to roster musicians in a way that stays consistent with all of the rules above, whilst reducing the manual nature of the task. It is widely considered to be a task that is beneath most people, therefore automating much of the process will help ensure that string rosters are delivered in a timely and efficient manner.
 
 ## Key Features
 
 ### Data Persistence
 
-Given that an orchestra could have well over 100 string musicians in their employ, it is essential to be able to store that data in between sessions. To do this the program makes use of a CSV file, and it will update it on every creation, edit, and deletion of a player. In order to ensure data integrity, the DAO(Data Access Object) module will also validate its data upon every program start. If it detects a corrupt entry, it will automatically remove it. 
+Given that an orchestra could have well over 100 string musicians in their employ, it is essential to be able to store that data in between sessions. To do this the program makes use of a CSV file, and it will update it on every creation, edit, and deletion of a player. In order to ensure data integrity, the DAO (Data Access Object) module will also validate its data upon every program start. If it detects a corrupt entry, it will automatically remove it. 
 
 ### Autofill and Player Recommendations 
 
@@ -63,11 +65,11 @@ When a player is working on a roster and deciding on which player to fill a chai
 |      |                  | Secondary | Casual |
 | N.R  | Not Recommended  | Non Prim./Sec. | Casual |
 
-Whilst the user can make use of this feature on its own, it goes hand-in-hand with the autofill feature. If a player wishes to fill a position but has no strong feeling on who should fill it, the autofill function will try to find a candidate of "reg" suitability and select one at random. If it is unable to find one, it will then find a "sec" candidate at random, at which point it will leave the chair unfilled if unsuccessful. The user can fill a single chair or even the entire string section in one action.
+Whilst the user can make use of this feature on its own, it goes hand-in-hand with the autofill feature. If a player wishes to fill a position but has no strong feeling on who should fill it, the autofill function will try to find a candidate of "reg" suitability and select one at random. If it is unable to find one, it will then find a "sec" candidate at random, at which point it will leave the chair unfilled if unsuccessful. The user can autofill a single chair or even the entire string section in one action.
 
 ### Demo Mode
 
-If the user merely wishes to try the functionality of the program, without going through the process of building up the player database, the __DEMO__ mode can be used. To access it append the (--demo) flag when running the application. It contains approximately 100 preconfigured musicians, allowing for all the features of the program to be tested. Please note though that any CRUD operations performed on the players themselves will not be persisted between sessions. 
+If the user merely wishes to try the functionality of the program, without going through the process of building up the player database, the __DEMO__ mode can be used. To access it, append the (--demo) flag when running the application. It contains approximately 100 preconfigured musicians, allowing for all the features of the program to be tested. Please note though that any CRUD operations performed on the players themselves will not be persisted between sessions. 
 
 ## User Experience
 
@@ -75,7 +77,7 @@ If the user merely wishes to try the functionality of the program, without going
 
 ### General Navigation
 
-Most of the application is traversed through list selection which done consistently through entering numbers into the terminal. The input is always tested and handled for validity to ensure the program will continue properly regardless of the actual input. The only actual typing required by the user is name entry.
+Most of the application is traversed through list selection which done consistently through entering numbers into the terminal. The input is always tested and handled for validity to ensure the program will continue properly regardless of the actual input. In fact, the only actual typing required by the user is when typing a name when editing a player.
 
 There are 2 main parts to the application; where the user can manage the player database, and roster creation. Both of these are accessed from the main menu.
 
@@ -99,6 +101,10 @@ The user will be taken through an initial creation flow where the name and size 
 
 * __Autofill chair__: As above but with a single chair.
 
-* __Remove Player__: Will remove a seated player. The user has the option to designate the player as unavailable making them inelligable for future selection.
+* __Remove Player__: Will remove a seated player. The user has the option to designate the player as unavailable making them ineligible for future selection.
 
-* __
+* __Fill/Replace Player__: Upon selecting a chair the user will be given a list of recommendations of candidates. This will remove a player is one is already present in the chair.
+
+* __Swap Players__: This will allow two players of the same section to be swapped by typing in two ordinal numbers. A warning will be displayed if the swap involves players performing outside of their usual role.
+
+* __Print__: This will export the roster in its current state to the Rosters folder. The roster will be stored in plain text.
