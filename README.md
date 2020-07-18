@@ -130,6 +130,8 @@ Here is a high level overview of the timeline for feature development.
 
 ## Project Management Screenshots
 
+For this project I relied on the Trello platform to visualize my tasks. Here are a number of snapshots of my progress on the project over the week-long development cycle.
+
 ![Trello Progress 1](docs/Progress_Screenshots/Trello1.png)
 
 ![Trello Progress 2](docs/Progress_Screenshots/Trello2.png)
