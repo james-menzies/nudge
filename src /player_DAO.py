@@ -28,9 +28,9 @@ player_list = []
 revalidate = False
 
 if "--demo" in argv:
-    file_str = 'resources/_players.csv'
+    file_str = '../resources/_players.csv'
 else:
-    file_str = 'resources/players.csv'
+    file_str = '../resources/players.csv'
 
 if path.exists(file_str):
     with open(file_str, 'r') as file:
