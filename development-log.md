@@ -23,4 +23,3 @@ Since being able to choose an item from a numbered list forms the vast majority 
 On a high level I have achieved this by creating a function that takes dict objects as vargs. The function checks for the items and titles keys, of which items is the only mandatory one. Items is in turn another dictionary with the display strings as keys pointing to the object essentially being chosen. I have also created a helper function to help create this object. The display string is then created and presented to the user. Once the input is validated, the function searches through the original keys, and returns the corresponding value(s).
 
 A more detailed logical flow for this function is contained in the README file.
-

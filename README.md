@@ -108,3 +108,26 @@ The user will be taken through an initial creation flow where the name and size 
 * __Swap Players__: This will allow two players of the same section to be swapped by typing in two ordinal numbers. A warning will be displayed if the swap involves players performing outside of their usual role.
 
 * __Print__: This will export the roster in its current state to the Rosters folder. The roster will be stored in plain text.
+
+## Implementation Plan
+
+Here is a high level overview of the timeline for feature development. 
+
+|Feature/Component| Due Date | Completed |
+|-----------------|--------- | --------- |
+|Main Loop of program, basic list selection | 12/7 | Yes|
+|Player, class implemented| 13/7 | Yes | 
+|Basic player import functionality | 14/7 | Yes|
+| Section and Roster classes implemented | 15/7| Yes |
+| Player recommendation and autofill functionality | 15/7| Yes |
+| Fully implemented list selection with multi options, multi columns et al | 16/7 | Yes |
+| Roster Edit Controller and Views | 16/7 | Yes |
+| Player Edit Controller and Views | 17/7 | Yes |
+| Major Testing / Bug Removal | 17/7 | Yes |
+| Print function | 17/7 | Yes |
+| Documentation compilation | 18/7 | Not yet|
+| Final clean up | 19/7 | Not yet |
+
+## Project Management Screenshots
+
+Here are 
