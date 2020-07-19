@@ -113,26 +113,6 @@ The user will be taken through an initial creation flow where the name and size 
 
 * __Print__: This will export the roster in its current state to the Rosters folder. The roster will be stored in plain text.
 
-##Testing
-The following features have been manually tested to ensure the program runs as intended:
-
-|No.|Feature|
-|---|-------|
-|0 | Miscellaneous |
-|1 | Choice Loop |
-|2 | List Selection |
-|3 | Player Creation |
-|4 | Player Deletion |
-|5 | Player Edit |
-|6 | Player View |
-| 7 | Roster Print |
-| 8 | Roster Autofill |
-| 9 | Roster Swap |
-|10 | Roster Autofill All |
-| 11 | Roster Removal | 
-| 12 | Roster Manual Fill |
-| 13 | Player Data Persistence|
-| 14 | Roster Creation |
 
 ## Control Flow Diagrams
 
@@ -153,6 +133,24 @@ This shows the relationship between the model components of the program. If I we
 ![Model UML Diagram](docs/Diagrams/Model%20Diagram.png)
 
 ## Test Cases
+
+|No.|Feature|
+|---|-------|
+|0 | Miscellaneous |
+|1 | Choice Loop |
+|2 | List Selection |
+|3 | Player Creation |
+|4 | Player Deletion |
+|5 | Player Edit |
+|6 | Player View |
+| 7 | Roster Print |
+| 8 | Roster Autofill |
+| 9 | Roster Swap |
+|10 | Roster Autofill All |
+| 11 | Roster Removal | 
+| 12 | Roster Manual Fill |
+| 13 | Player Data Persistence|
+| 14 | Roster Creation |
 
 The following test cases were all handled manually. For a live version of this spreadsheet, click [HERE](https://docs.google.com/spreadsheets/d/1T0IOgyLsJawRxrWuqhJdtaevpfZcRDkJfQuN2GCIUlE/edit?usp=sharing).
 
@@ -182,24 +180,3 @@ Here is a high level overview of the timeline for feature development.
 | Documentation compilation | 18/7 | Yes |
 | Final clean up | 19/7 | Yes |
 
-## Project Management Screenshots
-
-For this project I relied on the Trello platform to visualize my tasks. Here are a number of snapshots of my progress on the project over the week-long development cycle.
-
-![Trello Progress 1](docs/Progress_Screenshots/Trello1.png)
-
-![Trello Progress 2](docs/Progress_Screenshots/Trello2.png)
-
-![Trello Progress 3](docs/Progress_Screenshots/Trello3.png)
-
-![Trello Progress 4](docs/Progress_Screenshots/Trello4.png)
-
-![Trello Progress 5](docs/Progress_Screenshots/Trello5.png)
-
-![Trello Progress 7](docs/Progress_Screenshots/Trello7.png)
-
-![Trello Progress 8](docs/Progress_Screenshots/Trello8.png)
-
-![Trello Progress 9](docs/Progress_Screenshots/Trello9.png)
-
-![Trello Progress 10](docs/Progress_Screenshots/Trello10.png)
