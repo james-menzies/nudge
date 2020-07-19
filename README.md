@@ -148,6 +148,17 @@ This shows the relationship between the model components of the program. If I we
 
 ![Model UML Diagram](docs/Diagrams/Model%20Diagram.png)
 
+## Test Cases
+
+The following test cases were all handled manually. For a live version of this spreadsheet, click [HERE](https://docs.google.com/spreadsheets/d/1T0IOgyLsJawRxrWuqhJdtaevpfZcRDkJfQuN2GCIUlE/edit?usp=sharing).
+
+![Tests1](docs/Testing%20Screenshots/Tests1.png)
+
+![Tests2](docs/Testing%20Screenshots/Tests2.png)
+
+![Tests3](docs/Testing%20Screenshots/Tests3.png)
+
+
 ## Implementation Plan
 
 Here is a high level overview of the timeline for feature development. 
