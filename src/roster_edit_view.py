@@ -1,4 +1,3 @@
-from display_utils import create_option_block, choice_loop
 from roster_edit_controller import *
 
 
@@ -14,6 +13,7 @@ def edit_roster(roster):
     items["Print Roster"] = lambda: handle_print(roster)
 
     choice_loop(options, refresh_object=roster, end="Go Back to Main:")
+    reset_roster(roster)
 
 
 

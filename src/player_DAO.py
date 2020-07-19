@@ -1,5 +1,6 @@
 import csv
 from os import path
+from pathlib import Path
 from player import *
 from sys import argv
 
@@ -27,10 +28,14 @@ def save():
 player_list = []
 revalidate = False
 
+file_str = path.abspath(__file__)
+file_str = Path(file_str).parents[1]
+file_str = file_str.joinpath('resources')
+
 if "--demo" in argv:
-    file_str = '../resources/_players.csv'
+    file_str = file_str.joinpath('_players.csv')
 else:
-    file_str = '../resources/players.csv'
+    file_str = file_str.joinpath('players.csv')
 
 if path.exists(file_str):
     with open(file_str, 'r') as file:

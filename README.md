@@ -73,7 +73,7 @@ If the user merely wishes to try the functionality of the program, without going
 
 ## User Experience
 
-> NB: This information is also available to the user by prepending the --help argument when executing the application. Also, note that it is required to have Python version 3x installed for the program to run.
+> NB: This information is also available to the user by prepending the --help argument when executing the application. It is recommend to pipe this into the 'less' command to increase readability. Also, note that it is required to have Python version 3x installed for the program to run. 
 
 ### General Navigation
 
@@ -108,6 +108,27 @@ The user will be taken through an initial creation flow where the name and size 
 * __Swap Players__: This will allow two players of the same section to be swapped by typing in two ordinal numbers. A warning will be displayed if the swap involves players performing outside of their usual role.
 
 * __Print__: This will export the roster in its current state to the Rosters folder. The roster will be stored in plain text.
+
+##Testing
+The following features have been manually tested to ensure the program runs as intended:
+
+|No.|Feature|
+|---|-------|
+|0 | Miscellaneous |
+|1 | Choice Loop |
+|2 | List Selection |
+|3 | Player Creation |
+|4 | Player Deletion |
+|5 | Player Edit |
+|6 | Player View |
+| 7 | Roster Print |
+| 8 | Roster Autofill |
+| 9 | Roster Swap |
+|10 | Roster Autofill All |
+| 11 | Roster Removal | 
+| 12 | Roster Manual Fill |
+| 13 | Player Data Persistence|
+| 14 | Roster Creation |
 
 ## Control Flow Diagrams
 
