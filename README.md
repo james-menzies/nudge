@@ -111,7 +111,10 @@ The user will be taken through an initial creation flow where the name and size 
 
 ## Control Flow Diagrams
 
-### Main Program Loop
+### The Choice Loop
+The main program loop is used to allow the user to perform repeated actions whilst remaining in the correct part of the program. Both the player and roster edit sections employ this loop, as well as the main menu.
+
+![Choice Loop](docs/Diagrams/Main%20Program%20Loop.png)
 
 ### List Selection Logic
 This is the logic implemented every time the program requires the user to select between one or more concrete options.
@@ -120,13 +123,9 @@ This is the logic implemented every time the program requires the user to select
 
 ### Model UML Diagram
 
-This shows the relationship between the model components of the program. If I was to change the presentation layer (say to a GUI), this component of the program would remain unchanged.
+This shows the relationship between the model components of the program. If I were to change the presentation layer (say to a GUI), this component of the program would remain unchanged.
 
 ![Model UML Diagram](docs/Diagrams/Model%20Diagram.png)
-
-### Player Edit 
-
-### Roster Edit
 
 ## Implementation Plan
 
