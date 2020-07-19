@@ -114,10 +114,15 @@ The user will be taken through an initial creation flow where the name and size 
 ### Main Program Loop
 
 ### List Selection Logic
+This is the logic implemented every time the program requires the user to select between one or more concrete options.
 
 ![List Selection Logic Flow](docs/Diagrams/List%20Selection.png)
 
 ### Model UML Diagram
+
+This shows the relationship between the model components of the program. If I was to change the presentation layer (say to a GUI), this component of the program would remain unchanged.
+
+![Model UML Diagram](docs/Diagrams/Model%20Diagram.png)
 
 ### Player Edit 
 
