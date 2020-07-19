@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from display_utils import *
 import roster_edit_view
 import player_edit_view

@@ -1,7 +1,7 @@
 # String Section Rostering Utility
 ## Software Development Plan
 
-> __NB__ If running this program from the terminal, it is essential that it is run from the src folder as the working directory. To run the program, execute the main.py file.
+> To run the program, navigate to the src directory and execute the main file by typing './main.py'. Python 3x must be installed on the machine. For the best experience, ensure that the terminal window is as large as possible.
 
 ### Purpose
 
@@ -179,8 +179,8 @@ Here is a high level overview of the timeline for feature development.
 | Player Edit Controller and Views | 17/7 | Yes |
 | Major Testing / Bug Removal | 17/7 | Yes |
 | Print function | 17/7 | Yes |
-| Documentation compilation | 18/7 | Not yet|
-| Final clean up | 19/7 | Not yet |
+| Documentation compilation | 18/7 | Yes |
+| Final clean up | 19/7 | Yes |
 
 ## Project Management Screenshots
 
@@ -201,3 +201,5 @@ For this project I relied on the Trello platform to visualize my tasks. Here are
 ![Trello Progress 8](docs/Progress_Screenshots/Trello8.png)
 
 ![Trello Progress 9](docs/Progress_Screenshots/Trello9.png)
+
+![Trello Progress 10](docs/Progress_Screenshots/Trello10.png)
