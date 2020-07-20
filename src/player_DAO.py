@@ -13,7 +13,7 @@ def save():
 
     with open(file_path, 'w') as file:
         file.write("name,instrument,primary_role,employment_type,secondary_roles\n")
-        writer = csv.writer(file)
+        writer = csv.writer(file, lineterminator='\n')
         for player in player_list:
 
             row = [
@@ -43,13 +43,15 @@ else:
     file_path = file_path.joinpath('players.csv')
 
 
+
 if file_path.exists():
-    with open(file_path, 'r') as file:
+    with open(str(file_path), 'r') as file:
         reader = csv.reader(file)
         first_line = True
 
         for row in reader:
-            if first_line:
+
+            if first_line or len(row) == 0:
                 first_line = False
                 continue
 

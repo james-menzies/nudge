@@ -180,7 +180,6 @@ def user_confirmation(prompt):
     while not answer or answer not in valid_answers:
 
         answer = input(prompt).lower()
-        print(answer)
         if not answer or answer not in valid_answers:
             print(error_message)
 

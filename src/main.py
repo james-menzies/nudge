@@ -4,7 +4,7 @@ from display_utils import *
 import roster_edit_view
 import player_edit_view
 import creation_flows
-from sys import argv
+from os import system
 import sys
 
 help_text = """
@@ -88,10 +88,16 @@ def create_new_roster():
 def quit_program():
     print("Goodbye!")
 
+def size_window():
+    system('mode con: cols=180 lines=55')
 
-if "--help" in argv:
+
+
+if "--help" in sys.argv:
     print(help_text)
     sys.exit()
+
+size_window()
 
 welcome = """Welcome to the String Rostering Program.
 Please choose from the following options:
@@ -101,7 +107,7 @@ options, items = create_option_block("")
 items["Edit Player Pool"] = edit_players
 items["Create New Roster"] = create_new_roster
 
-if "--demo" in argv:
+if "--demo" in sys.argv:
     welcome = "(Demo Mode Active)\n\n" + welcome
 
 choice_loop(options, start=welcome, end="Exit Program")
