@@ -1,19 +1,17 @@
 from cx_Freeze import setup, Executable
 from pathlib import Path
 
-# Dependencies are automatically detected, but it might need
-# fine tuning.
 install_path = Path.home().joinpath("StringUtility")
 
 build_options = {'packages': [],
                  'excludes': [],
-                 'include_files': ['resources/'],
+                 'include_files': ['src/resources/'],
                  'build_exe': install_path}
 
 base = 'Console'
 
 executables = [
-    Executable('main.py', base=base, targetName='StringRoster',
+    Executable('src/main.py', base=base, targetName='StringRoster',
                shortcutDir="DesktopFolder", shortcutName="String Roster")
 ]
 
