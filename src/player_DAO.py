@@ -1,6 +1,7 @@
 import csv
-from os import path
+import sys
 from pathlib import Path
+
 from player import *
 from sys import argv
 
@@ -10,7 +11,7 @@ def save():
         print("[In demo mode, changes will not be saved]")
         return
 
-    with open(file_str, 'w') as file:
+    with open(file_path, 'w') as file:
         file.write("name,instrument,primary_role,employment_type,secondary_roles\n")
         writer = csv.writer(file)
         for player in player_list:
@@ -28,17 +29,22 @@ def save():
 player_list = []
 revalidate = False
 
-file_str = path.abspath(__file__)
-file_str = Path(file_str).parents[1]
-file_str = file_str.joinpath('resources')
+if getattr(sys, 'frozen', False):
+    file_path = Path(sys.executable)
+else:
+    file_path = Path(__file__)
+
+file_path = file_path.parent.joinpath('resources')
+
 
 if "--demo" in argv:
-    file_str = file_str.joinpath('_players.csv')
+    file_path = file_path.joinpath('_players.csv')
 else:
-    file_str = file_str.joinpath('players.csv')
+    file_path = file_path.joinpath('players.csv')
 
-if path.exists(file_str):
-    with open(file_str, 'r') as file:
+
+if file_path.exists():
+    with open(file_path, 'r') as file:
         reader = csv.reader(file)
         first_line = True
 
