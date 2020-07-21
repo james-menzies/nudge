@@ -26,22 +26,21 @@ def save():
             writer.writerow(row)
 
 
+def get_demo_file_path():
+    if getattr(sys, 'frozen', False):
+        file_path = Path(sys.executable)
+    else:
+        file_path = Path(__file__)
+
+    return file_path.parent.joinpath('resources', '_players.csv')
+
+
 player_list = []
 revalidate = False
-
-if getattr(sys, 'frozen', False):
-    file_path = Path(sys.executable)
-else:
-    file_path = Path(__file__)
-
-file_path = file_path.parent.joinpath('resources')
-
-
 if "--demo" in argv:
-    file_path = file_path.joinpath('_players.csv')
+    file_path = get_demo_file_path()
 else:
-    file_path = file_path.joinpath('players.csv')
-
+    file_path = Path.home().joinpath("StringRosterUtility", "Player Data", "players.csv" )
 
 
 if file_path.exists():

@@ -2,21 +2,24 @@ from player import *
 from player_DAO import player_list, save
 from creation_flows import create_new_player, edit_player
 from display_utils import *
+import traceback
 
 continue_str = "Press ENTER to continue>> "
 
 def handle_add():
     clear_screen()
+
+    player = create_new_player()
+    player_list.append(player)
+    clear_screen()
+    print("Player successfully created.\n")
     try:
-        player = create_new_player()
-        player_list.append(player)
-        clear_screen()
-        print("Player successfully created.\n")
         save()
         print(get_detailed_player_string(player), end="\n\n")
         input(continue_str)
     except:
-        print("Unknown error creating player.")
+        print("Unknown error saving player.")
+        traceback.print_exc()
         input(continue_str)
 
 

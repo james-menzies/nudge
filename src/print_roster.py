@@ -4,7 +4,7 @@ from pathlib import Path
 def print_roster(roster):
     title = roster.title
     root = Path.home()
-    rosters_folder = root.joinpath("String Rosters")
+    rosters_folder = root.joinpath("StringRosterUtility", "Rosters")
     rosters_folder.mkdir(parents=True, exist_ok=True)
 
     file_path = rosters_folder.joinpath(title + ".txt")
