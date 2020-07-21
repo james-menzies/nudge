@@ -35,7 +35,7 @@ def handle_swap(roster):
         options.append(option)
 
     chosen_players = list_selection(*options, multi=2,
-                                    prompt="Select 2 players to swap")
+                                    prompt="Select 2 players to swap, type 2 numbers separated by a space.")
 
     clear_screen()
     player1, player2 = chosen_players
@@ -74,8 +74,8 @@ def handle_auto_populate(roster):
 def handle_print(roster):
     clear_screen()
     try:
-        print_roster(roster)
-        print(f"{roster.title} successfully printed")
+        file_path = print_roster(roster)
+        print(f"{roster.title} roster successfully printed to \n{file_path}")
     except:
         print("An error occurred while printing")
     finally:

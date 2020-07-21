@@ -10,7 +10,7 @@ def save():
     if "--demo" in argv:
         print("[In demo mode, changes will not be saved]")
         return
-
+    file_path.parent.mkdir(parents=True, exist_ok=True)
     with open(file_path, 'w') as file:
         file.write("name,instrument,primary_role,employment_type,secondary_roles\n")
         writer = csv.writer(file, lineterminator='\n')
@@ -40,7 +40,7 @@ revalidate = False
 if "--demo" in argv:
     file_path = get_demo_file_path()
 else:
-    file_path = Path.home().joinpath("StringRosterUtility", "Player Data", "players.csv" )
+    file_path = Path.home().joinpath("StringRosterUtility", "Player Data", "players.csv")
 
 
 if file_path.exists():

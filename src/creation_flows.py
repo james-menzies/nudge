@@ -47,11 +47,11 @@ def __get_player_data(edited_player=None):
     clear_screen()
 
     if edited_player:
-        edit_insert = f" (currently {instruments[edited_player.instrument]})"
+        edit_insert = f"(currently {instruments[edited_player.instrument]})"
 
     instrument = get_enum_from_selection(Instrument,
                                          instruments,
-                                         prompt=f"Select Instrument{edit_insert}")
+                                         prompt=f"Select Instrument {edit_insert}")
 
     clear_screen()
     if instrument != Instrument.violin:
@@ -64,16 +64,16 @@ def __get_player_data(edited_player=None):
         exclusions = []
 
     if edited_player:
-        edit_insert = f" (currently {roles[edited_player.prim_role]})"
+        edit_insert = f"(currently {roles[edited_player.prim_role]})"
 
     prim_role = get_enum_from_selection(Role,
                                         roles,
                                         *exclusions,
-                                        prompt=f"Select Primary Role{edit_insert}")
+                                        prompt=f"Select Primary Role {edit_insert}")
 
     clear_screen()
     if edited_player:
-        edit_insert = f" (currently {employment_types[edited_player.emp]})"
+        edit_insert = f"(currently {employment_types[edited_player.emp]})"
     emp = get_enum_from_selection(Employment,
                                   employment_types,
                                   prompt=f"Select Employment Type {edit_insert}")
@@ -88,8 +88,10 @@ def __get_player_data(edited_player=None):
         for role in edited_player.sec_role:
             sec_role_insert.append(roles[role])
         sec_role_insert = ", ".join(sec_role_insert)
+        if not sec_role_insert:
+            sec_role_insert = "none"
 
-        edit_insert = f" (currently {sec_role_insert})"
+        edit_insert = f"(currently {sec_role_insert})"
 
     sec_role = get_enum_from_selection(Role,
                                        roles,

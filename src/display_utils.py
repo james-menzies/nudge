@@ -154,20 +154,30 @@ def render_columns(columns, col_width=30):
 
 
 def convert_input_to_int(user_input, min, max, multi=1):
-    err_message = "Please input a valid number."
+    valid_message = "Please input {}."
+    singular = "a valid number"
+    plural = "valid numbers"
+    quantity_message = "Please input the correct amount of numbers."
+    if multi > 1:
+        valid_message = valid_message.format(plural)
+    else:
+        valid_message = valid_message.format(singular)
+
     try:
         user_input = user_input.split()
         nums = []
         for i in range(0, multi):
             nums.append(int(user_input[i]))
-
-    except (ValueError, IndexError):
-        print(err_message)
+    except ValueError:
+        print(valid_message)
+        return None
+    except IndexError:
+        print(quantity_message)
         return None
 
     for num in nums:
         if not min <= num <= max:
-            print(err_message)
+            print(valid_message)
             return None
 
     return nums

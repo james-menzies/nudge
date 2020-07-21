@@ -7,11 +7,11 @@
 
 The utility of this application is two-fold. It is designed to:
 
-1. Maintain a pseudo-database of musicians, including what instrument they play, and the specific roles that they perform. The program allows for basic CRUD operations to be performed on these musicians.
+1. Maintain a pseudo-database of musicians, including what instrument they play, and the specific roles that they perform. The program allows for basic add/remove/edit operations to be performed on these musicians.
 
 ![Player Edit View](docs/App_Screenshots/Player_list.png)
 
-2. Design rosters for specific concert programs, allowing both for manual and automatic filling of positions, whilst ensuring that players aren't put into inappropriate positions. A roster is able to be printed as well.
+2. Design rosters for specific concert programs, allowing both for manual and automatic filling of positions, whilst ensuring that players aren't put into inappropriate positions. A roster is able to be exported as plain text.
 
 ![Roster Edit View](docs/App_Screenshots/Roster_Edit.png)
 

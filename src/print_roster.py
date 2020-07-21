@@ -18,3 +18,5 @@ def print_roster(roster):
 
     with open(file_path, "w") as file:
         file.write(str(roster))
+
+    return file_path.absolute()
