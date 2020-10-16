@@ -1,4 +1,4 @@
-# String Section Rostering Utility
+# Nudge - A Light Weight String Section Rostering Utility
 ## Software Development Plan
 
 > To run the program, navigate to the src directory and execute the main file by typing './main.py'. Python 3x must be installed on the machine. For the best experience, ensure that the terminal window is as large as possible.
